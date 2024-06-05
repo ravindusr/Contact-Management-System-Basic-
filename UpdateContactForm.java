@@ -31,7 +31,7 @@ class UpdateContactForm extends JFrame{
         title=new JLabel("UPDATE CONTACT");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("",1,30));
-        title.setBackground(Color.BLUE);
+      
         add("North",title);
 
         JPanel searchcomp=new JPanel(new FlowLayout());

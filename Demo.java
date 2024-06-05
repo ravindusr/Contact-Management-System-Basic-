@@ -10,6 +10,7 @@ class MainForm extends JFrame{
 
 	private AddContactForm AddContactForm;
 	private UpdateContactForm UpdateContactForm;
+	private ListContactForm ListContactForm;
 
 	private JButton btnAddContact;
 	private JButton btnUpdateContact;
@@ -68,13 +69,21 @@ class MainForm extends JFrame{
 		
 		btnListContact=new JButton("List Contact");
 		btnListContact.setFont(new Font("",1,25));
+		btnListContact.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt){
+				if(ListContactForm==null){
+					ListContactForm=new ListContactForm();
+				}
+				ListContactForm.setVisible(true);
+			}
+		});
 		buttonPanel.add(btnListContact);
 		
 		btnExit=new JButton("Exit");
 		btnExit.setFont(new Font("",1,25));
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt){
-				dispose();
+				System.exit(0);
 			}
 		});
 		buttonPanel.add(btnExit);
