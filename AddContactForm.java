@@ -129,6 +129,11 @@ class AddContactForm extends JFrame {
 
 		btnbacktohome = new JButton("Back To Home");
 		btnbacktohome.setFont(new Font("", 1, 25));
+		btnbacktohome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt){
+				dispose();
+			}
+        });
 		downbtns.add(btnbacktohome);
 
 		add("South", downbtns);

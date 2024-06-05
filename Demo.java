@@ -9,7 +9,7 @@ class MainForm extends JFrame{
 	public static ArrayList <Contact>ContactList=new ArrayList<>();
 
 	private AddContactForm AddContactForm;
-	
+	private UpdateContactForm UpdateContactForm;
 
 	private JButton btnAddContact;
 	private JButton btnUpdateContact;
@@ -48,6 +48,14 @@ class MainForm extends JFrame{
 		
 		btnUpdateContact=new JButton("Update Contact");
 		btnUpdateContact.setFont(new Font("",1,25));
+		btnUpdateContact.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt){
+				if(UpdateContactForm==null){
+					UpdateContactForm=new UpdateContactForm();
+				}
+				UpdateContactForm.setVisible(true);
+			}
+		});
 		buttonPanel.add(btnUpdateContact);
 		
 		btnDeleteContact=new JButton("Delete Contact");
@@ -64,6 +72,11 @@ class MainForm extends JFrame{
 		
 		btnExit=new JButton("Exit");
 		btnExit.setFont(new Font("",1,25));
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt){
+				dispose();
+			}
+		});
 		buttonPanel.add(btnExit);
 		
 		add("Center",buttonPanel);
