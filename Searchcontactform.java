@@ -131,19 +131,19 @@ class Searchcontactform extends JFrame{
             }
 
 
-        boolean contactFound = false;
-        for (Contact contact : MainForm.ContactList) {
-            if (contact.getName().equalsIgnoreCase(searchText) || contact.getPhonenum().equals(searchText)) {
-                lblIdValue.setText(String.valueOf(contact.getID()));
-                lblNameValue.setText(contact.getName());
-                lblContactnumValue.setText(contact.getPhonenum());
-                lblCompanyValue.setText(contact.getCompany());
-                lblSalaryValue.setText(String.valueOf(contact.getSalary()));
-                lblBDValue.setText(contact.getBD());
-                contactFound = true;
-                break;
+            boolean contactFound = false;
+            for (Contact contact : ContactDBConnection.getInstance().getContactList()) {
+                if (contact.getName().equalsIgnoreCase(searchText) || contact.getPhonenum().equals(searchText)) {
+                    lblIdValue.setText(contact.getID());
+                    lblNameValue.setText(contact.getName());
+                    lblContactnumValue.setText(contact.getPhonenum());
+                    lblCompanyValue.setText(contact.getCompany());
+                    lblSalaryValue.setText(String.valueOf(contact.getSalary()));
+                    lblBDValue.setText(contact.getBD());
+                    contactFound = true;
+                    break;
+                }
             }
-        }
 
         if (!contactFound) {
             JOptionPane.showMessageDialog(this, "Contact not found.", "Error", JOptionPane.ERROR_MESSAGE);

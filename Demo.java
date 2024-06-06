@@ -48,7 +48,6 @@ class MainForm extends JFrame{
 		buttonPanel.add(btnAddContact);
 
 		
-		
 		btnUpdateContact=new JButton("Update Contact");
 		btnUpdateContact.setFont(new Font("",1,25));
 		btnUpdateContact.addActionListener(new ActionListener() {
@@ -108,8 +107,6 @@ class MainForm extends JFrame{
 		
 		add("Center",buttonPanel);
 		}
-		
-
 	}
 	
 	

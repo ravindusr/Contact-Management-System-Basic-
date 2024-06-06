@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 class Listbirthdayform extends JFrame{
 
@@ -37,10 +39,22 @@ class Listbirthdayform extends JFrame{
 		btnReload=new JButton("Reload");
 		btnReload.setFont(new Font("",1,20));
 		btnReload.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent evt){
-				for(int i=0; i<MainForm.ContactList.size(); i++){
-					Contact contact=MainForm.ContactList.get(i);
-					Object[] rowData={contact.getID(), contact.getName(),contact.getPhonenum(),contact.getCompany(),contact.getSalary(),contact.getBD()};
+			public void actionPerformed(ActionEvent evt) {
+				dtm.setRowCount(0); // Clear existing rows
+				ArrayList<Contact> contactList = ContactDBConnection.getInstance().getContactList();
+
+				// Sort the contact list by birthday
+				contactList.sort(new Comparator<Contact>() {
+					public int compare(Contact c1, Contact c2) {
+						// Assuming the birthday is in a standard date format e.g., "yyyy-MM-dd"
+						return c1.getBD().compareTo(c2.getBD());
+					}
+				});
+
+				// Add sorted contacts to the table
+				for (Contact contact : contactList) {
+					Object[] rowData = { contact.getID(), contact.getName(), contact.getPhonenum(),
+							contact.getCompany(), contact.getSalary(), contact.getBD() };
 					dtm.addRow(rowData);
 				}
 			}

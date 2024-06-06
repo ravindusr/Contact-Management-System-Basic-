@@ -9,11 +9,17 @@ class Deletecontactform extends JFrame{
     private JButton btnsearch;
 
     private JLabel lblId;
+    private JLabel lblIdValue;
 	private JLabel lblName;
+    private JLabel lblNameValue;
 	private JLabel lblContactnum;
+    private JLabel lblContactnumValue;
 	private JLabel lblCompany;
+    private JLabel lblCompanyValue;
 	private JLabel lblSalary;
+    private JLabel lblSalaryValue;
 	private JLabel lblBD;
+    private JLabel lblBDValue;
 
     private JButton btnupdate;
     private JButton btncancle;
@@ -40,37 +46,66 @@ class Deletecontactform extends JFrame{
         
         btnsearch=new JButton("Search");
         btnsearch.setFont(new Font("",1,25));
+        btnsearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchContact();
+            }
+        });
         searchcomp.add(btnsearch);
 
         add(searchcomp,BorderLayout.CENTER);
 
 
         
-        JPanel lablePanel=new JPanel(new GridLayout(6,1));
+        JPanel lablePanel=new JPanel(new GridLayout(6,2));
         
         lblId=new JLabel("Contact ID ");
         lblId.setFont(new Font("",1,25));
         lablePanel.add(lblId);
+        
+        lblIdValue = new JLabel();
+        lblIdValue.setFont(new Font("",1,25));
+        lablePanel.add(lblIdValue);
 
         lblName=new JLabel("Name");
         lblName.setFont(new Font("",1,25));
         lablePanel.add(lblName);
+        lblNameValue = new JLabel();
+        lblNameValue.setFont(new Font("",1,25));
+        lablePanel.add(lblNameValue);
 
         lblContactnum=new JLabel("Contact Number ");
         lblContactnum.setFont(new Font("",1,25));
         lablePanel.add(lblContactnum);
+        lblContactnumValue = new JLabel();
+        lblContactnumValue.setFont(new Font("",1,25));
+        lablePanel.add(lblContactnumValue);
+
 
         lblCompany=new JLabel("Company ");
         lblCompany.setFont(new Font("",1,25));
         lablePanel.add(lblCompany);
+        lblCompanyValue = new JLabel();
+        lblCompanyValue.setFont(new Font("",1,25));
+        lablePanel.add(lblCompanyValue);
+
 
         lblSalary=new JLabel("Salary ");
         lblSalary.setFont(new Font("",1,25));
         lablePanel.add(lblSalary);
+        lblSalaryValue = new JLabel();
+        lblSalaryValue.setFont(new Font("",1,25));
+        lablePanel.add(lblSalaryValue);
+
 
         lblBD=new JLabel("Birthday");
         lblBD.setFont(new Font("",1,25));
         lablePanel.add(lblBD);
+        lblBDValue = new JLabel();
+        lblBDValue.setFont(new Font("",1,25));
+        lablePanel.add(lblBDValue);
+
 
         add("West",lablePanel);
 
@@ -78,6 +113,7 @@ class Deletecontactform extends JFrame{
 
         btnupdate=new JButton("Delete");
         btnupdate.setFont(new Font("",1,25));
+        
         downpanel.add(btnupdate);
 
         btncancle=new JButton("Cancle");
@@ -94,6 +130,33 @@ class Deletecontactform extends JFrame{
         downpanel.add(btnbacktohome);
 
         add(downpanel,BorderLayout.SOUTH);
+    }
+
+        private void searchContact() {
+            String searchText = search.getText().trim();
+            if (searchText.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter a contact name or phone number.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+
+            boolean contactFound = false;
+            for (Contact contact : ContactDBConnection.getInstance().getContactList()) {
+                if (contact.getName().equalsIgnoreCase(searchText) || contact.getPhonenum().equals(searchText)) {
+                    lblIdValue.setText(contact.getID());
+                    lblNameValue.setText(contact.getName());
+                    lblContactnumValue.setText(contact.getPhonenum());
+                    lblCompanyValue.setText(contact.getCompany());
+                    lblSalaryValue.setText(String.valueOf(contact.getSalary()));
+                    lblBDValue.setText(contact.getBD());
+                    contactFound = true;
+                    break;
+                }
+            }
+
+        if (!contactFound) {
+            JOptionPane.showMessageDialog(this, "Contact not found.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
 
 

@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 class AddContactForm extends JFrame {
 	private JLabel title;
 
 	private JLabel lblId;
+	private JLabel IDValue;
 	private JLabel lblName;
 	private JLabel lblContactnum;
 	private JLabel lblCompany;
@@ -24,7 +26,7 @@ class AddContactForm extends JFrame {
 	private JButton btnbacktohome;
 
 	AddContactForm() {
-		setSize(500, 500);
+		setSize(600, 500);
 		setTitle("Add Contacts");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -65,8 +67,10 @@ class AddContactForm extends JFrame {
 		add("West", labelPanel);
 
 		JPanel textPanel = new JPanel(new GridLayout(6, 1));
+
 		txtID = new JTextField(6);
 		txtID.setFont(new Font("", 1, 20));
+		txtID.setEditable(false);
 		JPanel idtxtPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		idtxtPanel.add(txtID);
 		textPanel.add(idtxtPanel);
@@ -116,7 +120,7 @@ class AddContactForm extends JFrame {
 				double salary=Double.parseDouble(txtSalary.getText());
 				String bd=txtBD.getText();
 				Contact contact=new Contact(id,name,pn,cn,salary,bd);
-				MainForm.ContactList.add(contact);
+				ContactDBConnection.getInstance().getContactList().add(contact);
 				
 			}
 		});
@@ -125,9 +129,9 @@ class AddContactForm extends JFrame {
 
 		btncancle = new JButton("Cancle");
 		btncancle.setFont(new Font("", 1, 25));
-		btnbacktohome.addActionListener(new ActionListener() {
+		btncancle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt){
-				dispose();
+				clearInputFields();
 			}
         });
 		downbtns.add(btncancle);
@@ -137,6 +141,7 @@ class AddContactForm extends JFrame {
 		btnbacktohome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt){
 				dispose();
+				clearInputFields();
 			}
         });
 		downbtns.add(btnbacktohome);
@@ -148,9 +153,71 @@ class AddContactForm extends JFrame {
                 JOptionPane.showMessageDialog(AddContactForm.this,
                         "Contact added successfully!",
                         "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.INFORMATION_MESSAGE);	
             }
         });
 
+		txtID.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				txtName.requestFocus();
+			}
+		});
+
+		txtName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				txtContactnum.requestFocus();
+			}
+		});
+
+		txtContactnum.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				txtCompany.requestFocus();
+			}
+		});
+
+		txtCompany.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				txtSalary.requestFocus();
+			}
+		});
+
+		txtSalary.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				txtBD.requestFocus();
+			}
+		});
+
+		txtBD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				btnaddcontact.requestFocus();
+			}
+		});
+
+		setNextContactID();
+
+	
 	}
+	private void setNextContactID() {
+    String nextID = "C0001";  // Default first ID
+    ArrayList<Contact> contactList = ContactDBConnection.getInstance().getContactList();
+    
+    if (!contactList.isEmpty()) {
+        Contact lastContact = contactList.get(contactList.size() - 1);
+        String lastID = lastContact.getID();
+        int lastNo = Integer.parseInt(lastID.substring(1));
+        nextID = String.format("C%04d", lastNo + 1);
+    }
+    txtID.setText(nextID);
+}
+	
+
+	private void clearInputFields() {
+        txtName.setText("");
+        txtContactnum.setText("");
+        txtCompany.setText("");
+        txtSalary.setText("");
+        txtBD.setText("");
+        setNextContactID();
+    }
+
 }
