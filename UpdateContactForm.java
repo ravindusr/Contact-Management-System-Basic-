@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-import java.awt.color.*;
 class UpdateContactForm extends JFrame{
     
     private JLabel title;

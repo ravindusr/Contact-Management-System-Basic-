@@ -3,7 +3,7 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 
-class Listnameform extends JFrame{
+class Listsalaryform extends JFrame{
 
 	private JTable tblCustomerDetails;
 	private DefaultTableModel dtm;
@@ -13,13 +13,13 @@ class Listnameform extends JFrame{
 	private JButton btnReload; 
     private JButton btnbth;
 
-	Listnameform(){
+	Listsalaryform(){
 		setSize(400,300);
-		setTitle("List Contacts by Name Form");
+		setTitle("List Contacts by Salary Form");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
-		titleLabel=new JLabel("LIST CONTACTS BY NAME");
+		titleLabel=new JLabel("LIST CONTACTS BY SALARY");
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setFont(new Font("",1,30));
 		add("North",titleLabel);

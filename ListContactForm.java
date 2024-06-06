@@ -13,6 +13,8 @@ class ListContactForm extends JFrame{
     private JButton btncancle;
 
     private Listnameform Listnameform;
+    private Listsalaryform Listsalaryform;
+    private Listbirthdayform Listbirthdayform;
 
     ListContactForm(){
         setSize(500,500);
@@ -42,10 +44,26 @@ class ListContactForm extends JFrame{
 
         btnsalary=new JButton("List by Salary");
         btnsalary.setFont(new Font("",1,25));
+        btnsalary.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt){
+                if(Listsalaryform==null){
+                    Listsalaryform=new Listsalaryform();
+                }
+                Listsalaryform.setVisible(true);
+            }
+        });
         listpanel.add(btnsalary);
 
         btnBd=new JButton("List by Birthday");
         btnBd.setFont(new Font("",1,25));
+        btnBd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt){
+                if(Listbirthdayform==null){
+                    Listbirthdayform=new Listbirthdayform();
+                }
+                Listbirthdayform.setVisible(true);
+            }
+        });
         listpanel.add(btnBd);
 
 
@@ -63,15 +81,6 @@ class ListContactForm extends JFrame{
         pnl.add(btncancle);
 
         add(pnl,BorderLayout.SOUTH);
-
-
-
-
-
-
-
-
-   
 
     }
     
