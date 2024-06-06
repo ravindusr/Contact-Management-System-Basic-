@@ -10,6 +10,8 @@ class MainForm extends JFrame{
 
 	private AddContactForm AddContactForm;
 	private UpdateContactForm UpdateContactForm;
+	private Deletecontactform Deletecontactform; 
+	private Searchcontactform Searchcontactform;
 	private ListContactForm ListContactForm;
 
 	private JButton btnAddContact;
@@ -61,10 +63,26 @@ class MainForm extends JFrame{
 		
 		btnDeleteContact=new JButton("Delete Contact");
 		btnDeleteContact.setFont(new Font("",1,25));
+		btnDeleteContact.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt){
+				if(Deletecontactform==null){
+					Deletecontactform=new Deletecontactform();
+				}
+				Deletecontactform.setVisible(true);
+			}
+		});
 		buttonPanel.add(btnDeleteContact);
 		
 		btnSerachContact=new JButton("Search Contact");
 		btnSerachContact.setFont(new Font("",1,25));
+		btnSerachContact.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt){
+				if(Searchcontactform==null){
+					Searchcontactform=new Searchcontactform();
+				}
+				Searchcontactform.setVisible(true);
+			}
+		});
 		buttonPanel.add(btnSerachContact);
 		
 		btnListContact=new JButton("List Contact");

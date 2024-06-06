@@ -125,6 +125,11 @@ class AddContactForm extends JFrame {
 
 		btncancle = new JButton("Cancle");
 		btncancle.setFont(new Font("", 1, 25));
+		btnbacktohome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt){
+				dispose();
+			}
+        });
 		downbtns.add(btncancle);
 
 		btnbacktohome = new JButton("Back To Home");
