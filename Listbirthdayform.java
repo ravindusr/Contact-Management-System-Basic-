@@ -16,7 +16,7 @@ class Listbirthdayform extends JFrame{
     private JButton btnbth;
 
 	Listbirthdayform(){
-		setSize(400,300);
+		setSize(850,500);
 		setTitle("List Contacts by Birthday Form");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);

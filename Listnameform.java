@@ -16,7 +16,7 @@ class Listnameform extends JFrame {
 	private JButton btnbth;
 
 	Listnameform() {
-		setSize(400, 300);
+		setSize(850, 500);
 		setTitle("List Contacts by Name Form");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);

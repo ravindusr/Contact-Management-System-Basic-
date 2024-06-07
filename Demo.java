@@ -1,12 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 class MainForm extends JFrame{
-	private JLabel title;
-
-	public static ArrayList <Contact>ContactList=new ArrayList<>();
+	private JLabel title2;
 
 	private AddContactForm AddContactForm;
 	private UpdateContactForm UpdateContactForm;
@@ -23,17 +20,30 @@ class MainForm extends JFrame{
 	
 	
 	MainForm(){
-		setSize(500,400);
+		setSize(850,500);
 		setTitle("Contact Management System");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
-		title=new JLabel("iFRIEND Contact Manager");
-		title.setHorizontalAlignment(JLabel.CENTER);
-		title.setFont(new Font("",1,30));
-		add("North",title);
+		JPanel titlepanel=new JPanel(new GridLayout(1,1));
 
-		JPanel buttonPanel=new JPanel(new GridLayout(6,1));
+		
+
+		title2=new JLabel("HOME PAGE");
+		title2.setHorizontalAlignment(JLabel.CENTER);
+		title2.setFont(new Font("",1,30));
+		titlepanel.add(title2);
+
+		add("North",titlepanel);
+
+		JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BorderLayout());
+        JLabel label = new JLabel("<html><div style='text-align: center;'><h1>iFRIEND<br>Contact Manager</h1></div></html>", SwingConstants.CENTER);
+        leftPanel.add(label, BorderLayout.CENTER);
+ 
+
+
+		JPanel buttonPanel=new JPanel(new GridLayout(6,1,10,10));
 		
 		btnAddContact=new JButton("Add Contact");
 		btnAddContact.setFont(new Font("",1,25));
@@ -105,7 +115,13 @@ class MainForm extends JFrame{
 		});
 		buttonPanel.add(btnExit);
 		
-		add("Center",buttonPanel);
+		add(buttonPanel,BorderLayout.CENTER);
+
+		add(leftPanel, BorderLayout.WEST);
+
+		leftPanel.setPreferredSize(new Dimension(300, 0));
+
+        setVisible(true);
 		}
 	}
 	

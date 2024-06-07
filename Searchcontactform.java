@@ -25,7 +25,7 @@ class Searchcontactform extends JFrame{
 
     Searchcontactform(){
 
-        setSize(580,500);
+        setSize(850,500);
         setTitle("SearchContactForm");
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);

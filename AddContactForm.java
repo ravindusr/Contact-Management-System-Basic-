@@ -7,7 +7,6 @@ class AddContactForm extends JFrame {
 	private JLabel title;
 
 	private JLabel lblId;
-	private JLabel IDValue;
 	private JLabel lblName;
 	private JLabel lblContactnum;
 	private JLabel lblCompany;
@@ -26,7 +25,7 @@ class AddContactForm extends JFrame {
 	private JButton btnbacktohome;
 
 	AddContactForm() {
-		setSize(600, 500);
+		setSize(700, 520);
 		setTitle("Add Contacts");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);

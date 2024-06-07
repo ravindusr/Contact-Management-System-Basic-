@@ -21,13 +21,15 @@ class Deletecontactform extends JFrame{
 	private JLabel lblBD;
     private JLabel lblBDValue;
 
-    private JButton btnupdate;
+    private JButton btndelete;;
     private JButton btncancle;
     private JButton btnbacktohome;
 
+    private Contact foundContact;
+
     Deletecontactform(){
 
-        setSize(580,500);
+        setSize(850,500);
         setTitle("DeleteContactForm");
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -47,8 +49,7 @@ class Deletecontactform extends JFrame{
         btnsearch=new JButton("Search");
         btnsearch.setFont(new Font("",1,25));
         btnsearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evt) {
                 searchContact();
             }
         });
@@ -111,10 +112,14 @@ class Deletecontactform extends JFrame{
 
         JPanel downpanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        btnupdate=new JButton("Delete");
-        btnupdate.setFont(new Font("",1,25));
-        
-        downpanel.add(btnupdate);
+        btndelete=new JButton("Delete");
+        btndelete.setFont(new Font("",1,25));
+        btndelete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt){
+                deletecontact();
+            }
+        });
+        downpanel.add(btndelete);
 
         btncancle=new JButton("Cancle");
         btncancle.setFont(new Font("",1,25));
@@ -124,6 +129,7 @@ class Deletecontactform extends JFrame{
         btnbacktohome.setFont(new Font("",1,25));
         btnbacktohome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt){
+                clearFields();
 				dispose();
 			}
         });
@@ -149,6 +155,7 @@ class Deletecontactform extends JFrame{
                     lblCompanyValue.setText(contact.getCompany());
                     lblSalaryValue.setText(String.valueOf(contact.getSalary()));
                     lblBDValue.setText(contact.getBD());
+                    foundContact = contact;
                     contactFound = true;
                     break;
                 }
@@ -157,9 +164,33 @@ class Deletecontactform extends JFrame{
         if (!contactFound) {
             JOptionPane.showMessageDialog(this, "Contact not found.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-
-
     }
+
+    private void deletecontact(){
+        if (foundContact == null) {
+            JOptionPane.showMessageDialog(this, "Please search for a contact first.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int response = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this contact?", "Confirm ", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            ContactDBConnection.getInstance().getContactList().remove(foundContact);
+            JOptionPane.showMessageDialog(this, "Contact deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            clearFields();
+        }
+            
+    }
+
+    private void clearFields() {
+        lblIdValue.setText("");
+        lblNameValue.setText("");
+        lblContactnumValue.setText("");
+        lblCompanyValue.setText("");
+        lblSalaryValue.setText("");
+        lblBDValue.setText("");
+        search.setText("");
+        foundContact = null;
+    }
+
 
 }

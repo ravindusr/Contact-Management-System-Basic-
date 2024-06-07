@@ -27,14 +27,15 @@ class UpdateContactForm extends JFrame{
 
     UpdateContactForm(){
 
-        setSize(580,500);
+        setSize(850,500);
         setTitle("UpdateContactForm");
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
         title=new JLabel("UPDATE CONTACT");
         title.setHorizontalAlignment(JLabel.CENTER);
-        title.setFont(new Font("",1,30));
+        title.setFont(new Font("",Font.BOLD,30));
       
         add("North",title);
 
@@ -47,7 +48,6 @@ class UpdateContactForm extends JFrame{
         btnsearch=new JButton("Search");
         btnsearch.setFont(new Font("",1,25));
         btnsearch.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 searchContact();
             }

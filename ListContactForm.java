@@ -17,7 +17,7 @@ class ListContactForm extends JFrame{
     private Listbirthdayform Listbirthdayform;
 
     ListContactForm(){
-        setSize(500,500);
+        setSize(850,500);
         setTitle("List Contact Form");
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -28,7 +28,7 @@ class ListContactForm extends JFrame{
 
         add("North",title);
 
-        JPanel listpanel=new JPanel(new GridLayout(3,1));
+        JPanel listpanel=new JPanel(new GridLayout(3,1,20,20));
 
         btnname=new JButton("List by Name");
         btnname.setFont(new Font("",1,25));
