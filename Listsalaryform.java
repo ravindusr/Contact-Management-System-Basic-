@@ -35,18 +35,17 @@ class Listsalaryform extends JFrame{
 		
 		add("Center",tablePane);
 		
-		JPanel buttonPanel=new JPanel(); //Default layout ->JPanel --FlowLAyout
+		JPanel buttonPanel=new JPanel(); 
 		btnReload=new JButton("Reload");
 		btnReload.setFont(new Font("",1,20));
 		btnReload.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent evt) {
-				dtm.setRowCount(0); // Clear existing rows
+				dtm.setRowCount(0); 
 				ArrayList<Contact> contactList = ContactDBConnection.getInstance().getContactList();
 
 				// Sort the contact list by birthday
 				contactList.sort(new Comparator<Contact>() {
 					public int compare(Contact c1, Contact c2) {
-						// Assuming the birthday is in a standard date format e.g., "yyyy-MM-dd"
 						return Double.compare(c1.getSalary(), c2.getSalary());
 					}
 				});

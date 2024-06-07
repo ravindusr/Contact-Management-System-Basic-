@@ -35,23 +35,20 @@ class Listnameform extends JFrame {
 
 		add("Center", tablePane);
 
-		JPanel buttonPanel = new JPanel(); // Default layout ->JPanel --FlowLAyout
+		JPanel buttonPanel = new JPanel(); 
 		btnReload = new JButton("Reload");
 		btnReload.setFont(new Font("", 1, 20));
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				dtm.setRowCount(0); // Clear existing rows
-				ArrayList<Contact> contactList = ContactDBConnection.getInstance().getContactList();
+				dtm.setRowCount(0); 
 
-				// Sort the contact list by birthday
+				ArrayList<Contact> contactList = ContactDBConnection.getInstance().getContactList();
 				contactList.sort(new Comparator<Contact>() {
 					public int compare(Contact c1, Contact c2) {
-						// Assuming the birthday is in a standard date format e.g., "yyyy-MM-dd"
 						return c1.getName().compareTo(c2.getName());
 					}
 				});
 
-				// Add sorted contacts to the table
 				for (Contact contact : contactList) {
 					Object[] rowData = { contact.getID(), contact.getName(), contact.getPhonenum(),
 							contact.getCompany(), contact.getSalary(), contact.getBD() };

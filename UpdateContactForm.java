@@ -25,6 +25,10 @@ class UpdateContactForm extends JFrame{
     private JButton btncancle;
     private JButton btnbacktohome;
 
+    private updatecatagory updatecatagory;
+
+    private Contact foundContact;
+
     UpdateContactForm(){
 
         setSize(850,500);
@@ -114,6 +118,14 @@ class UpdateContactForm extends JFrame{
 
         btnupdate=new JButton("Update");
         btnupdate.setFont(new Font("",1,25));
+        btnupdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt){
+				if(updatecatagory==null){
+					updatecatagory=new updatecatagory(UpdateContactForm.this);
+				}
+				updatecatagory.setVisible(true);
+			}
+        });
         downpanel.add(btnupdate);
 
         btncancle=new JButton("Cancle");
@@ -150,6 +162,7 @@ class UpdateContactForm extends JFrame{
                     lblCompanyValue.setText(contact.getCompany());
                     lblSalaryValue.setText(String.valueOf(contact.getSalary()));
                     lblBDValue.setText(contact.getBD());
+                    foundContact=contact;
                     contactFound = true;
                     break;
                 }
@@ -160,5 +173,36 @@ class UpdateContactForm extends JFrame{
         }
 
     }
-
+    public void showUpdateDialog(String field) {
+        if (foundContact == null) {
+            JOptionPane.showMessageDialog(this, "Please search for a contact first.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String newValue = JOptionPane.showInputDialog(this, "Enter new " + field + ":");
+        if (newValue != null && !newValue.trim().isEmpty()) {
+            switch (field) {
+                case "Name":
+                    foundContact.setName(newValue);
+                    lblNameValue.setText(newValue);
+                    break;
+                case "Phone Number":
+                    foundContact.setPhonenum(newValue);
+                    lblContactnumValue.setText(newValue);
+                    break;
+                case "Company":
+                    foundContact.setCompany(newValue);
+                    lblCompanyValue.setText(newValue);
+                    break;
+                case "Salary":
+                    try {
+                        double newSalary = Double.parseDouble(newValue);
+                        foundContact.setSalary(newSalary);
+                        lblSalaryValue.setText(String.valueOf(newSalary));
+                    } catch (NumberFormatException evt) {
+                        JOptionPane.showMessageDialog(this, "Please enter a valid salary.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                }
+            }
+        }
 }
