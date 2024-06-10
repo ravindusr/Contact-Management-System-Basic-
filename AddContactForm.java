@@ -115,14 +115,35 @@ class AddContactForm extends JFrame {
 				String id=txtID.getText();
 				String name=txtName.getText();
 				String pn=txtContactnum.getText();
+
+				if (!CustomerController.isValidPhoneNumber(pn)) {
+					JOptionPane.showMessageDialog(AddContactForm.this,
+						"Invalid phone number! Try Again",
+						"Error",
+						JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 				String cn=txtCompany.getText();
 				double salary=Double.parseDouble(txtSalary.getText());
 				String bd=txtBD.getText();
+
+				
+				if (!CustomerController.isValidPhoneNumber(bd)) {
+					JOptionPane.showMessageDialog(AddContactForm.this,
+						"Invalid Birthday ! Try Again.",
+						"Error",
+						JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 				Contact contact=new Contact(id,name,pn,cn,salary,bd);
 				ContactDBConnection.getInstance().getContactList().add(contact);
-				
 			}
+			
 		});
+		
+		
 		downbtns.add(btnaddcontact);
 
 
