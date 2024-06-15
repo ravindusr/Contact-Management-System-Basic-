@@ -45,7 +45,6 @@ class Searchcontactform extends JFrame{
         btnsearch=new JButton("Search");
         btnsearch.setFont(new Font("",1,25));
         btnsearch.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 searchContact();
             }
