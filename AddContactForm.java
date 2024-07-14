@@ -24,7 +24,6 @@ class AddContactForm extends JFrame {
 	private JButton btncancle;
 	private JButton btnbacktohome;
 
-
 	AddContactForm() {
 		setSize(700, 520);
 		setTitle("Add Contacts");
@@ -117,7 +116,7 @@ class AddContactForm extends JFrame {
 				String name=txtName.getText();
 				String pn=txtContactnum.getText();
 
-				if (!CustomerController.isValidPhoneNumber(pn)) {
+				if (!ContactController.isValidPhoneNumber(pn)) {
 					JOptionPane.showMessageDialog(AddContactForm.this,
 						"Invalid phone number! Try Again",
 						"Error",
@@ -130,7 +129,7 @@ class AddContactForm extends JFrame {
 				String bd=txtBD.getText();
 
 				
-				if (!CustomerController.isValidBirthday(bd)) {
+				if (!ContactController.isValidBirthday(bd)) {
 					JOptionPane.showMessageDialog(AddContactForm.this,
 						"Invalid Birthday ! Try Again.",
 						"Error",
@@ -171,12 +170,10 @@ class AddContactForm extends JFrame {
 
 		btnaddcontact.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(AddContactForm.this,
-						"Contact added successfully!",
-						"Success",
-						JOptionPane.INFORMATION_MESSAGE);
-					clearInputFields();
-				
+                JOptionPane.showMessageDialog(AddContactForm.this,
+                        "Contact added successfully!",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);	
             }
         });
 

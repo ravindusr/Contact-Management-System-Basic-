@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.time.*;
-class CustomerController{
+
+class ContactController{
 	public static boolean addContact(Contact contact){
-		ArrayList <Contact>ContactlList=ContactDBConnection.getInstance().getContactList();
-		return ContactlList.add(contact);	
+		ArrayList <Contact>customerList=ContactDBConnection.getInstance().getContactList();
+		return customerList.add(contact);	
 	}
 	public static boolean deleteCustomer(int index){
 		ContactDBConnection.getInstance().getContactList().remove(index);
@@ -13,17 +14,8 @@ class CustomerController{
 		return ContactDBConnection.getInstance().getContactList().remove(customer);
 	}
 
-	public static boolean isValidPhoneNumber(String phoneNumber){
-        if(phoneNumber.length()==10 && phoneNumber.charAt(0)=='0'){
-            for(int i=1; i<phoneNumber.length(); i++){
-                if(!Character.isDigit(phoneNumber.charAt(i))){
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-
+	public static boolean isValidPhoneNumber(String pn) {
+        return pn.matches("^0\\d{9}$");
     }
 
 	public static boolean isValidBirthday(String bd){
